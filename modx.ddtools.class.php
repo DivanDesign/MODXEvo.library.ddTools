@@ -1669,6 +1669,16 @@ class ddTools {
 		
 		return $output;
 	}
+	public static function extendLanguage($path = '', $language = "") {
+		global $manager_language, $_lang;
+		if (!$path) $path = dirname(__FILE__);
+		$path = MODX_BASE_PATH.str_replace(MODX_BASE_PATH,'',$path);
+		if (!$language) $language = $manager_language;
+		include_once("{$path}lang/english.inc.php");
+if ($language !== 'english' && is_file("{$path}lang/{$language}.inc.php")) {
+			include_once("{$path}lang/{$language}.inc.php");
+		}
+	}
 }
 
 if(isset($modx)){
